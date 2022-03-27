@@ -22,7 +22,13 @@ input.onGesture(Gesture.Shake, function () {
             retry = false
         } else if (hand == 3) {
             if (_super == 1) {
-                basic.showIcon(IconNames.Surprised)
+                basic.showLeds(`
+                    # # . # #
+                    # . # . #
+                    . # . # .
+                    # . # . #
+                    # # . # #
+                    `)
                 _super += 1
                 retry = false
             } else {
