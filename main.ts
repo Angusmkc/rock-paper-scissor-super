@@ -4,30 +4,13 @@ function restart () {
     comp_score = 0
     return 0
 }
-function rockpaperSissors () {
-    hand = randint(1, 3)
-    if (hand == 1) {
-        basic.showLeds(`
-            . . . . .
-            . # # # .
-            . # # # .
-            . # # # .
-            . . . . .
-            `)
-    } else if (hand == 2) {
-        basic.showIcon(IconNames.Square)
-    } else {
-        basic.showIcon(IconNames.Scissors)
-    }
-    return 0
-}
 input.onButtonPressed(Button.A, function () {
     user_score += 1
     music.play(music.createSoundExpression(WaveShape.Square, 3426, 1, 216, 0, 359, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
     scores(user_score, comp_score)
 })
 input.onSound(DetectedSound.Loud, function () {
-    rockpaperSissors()
+    rockpaperScissors()
 })
 radio.onReceivedString(function (receivedString) {
     basic.showString(receivedString)
@@ -77,8 +60,25 @@ function scores (user: number, comp: number) {
     }
     return 0
 }
-let score = ""
+function rockpaperScissors () {
+    hand = randint(1, 3)
+    if (hand == 1) {
+        basic.showLeds(`
+            . . . . .
+            . # # # .
+            . # # # .
+            . # # # .
+            . . . . .
+            `)
+    } else if (hand == 2) {
+        basic.showIcon(IconNames.Square)
+    } else {
+        basic.showIcon(IconNames.Scissors)
+    }
+    return 0
+}
 let hand = 0
+let score = ""
 let comp_score = 0
 let user_score = 0
 restart()
